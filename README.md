@@ -55,3 +55,39 @@ $ bellows zcl 00:0d:6f:00:05:7d:2d:34 1 1026 read_attribute 0
    https://www.silabs.com/Support%20Documents/TechnicalDocs/UG101.pdf
  * EZSP Reference Guide:
    http://www.silabs.com/Support%20Documents/TechnicalDocs/UG100-EZSPReferenceGuide.pdf
+
+## Stephen's Notes
+
+[Reset GE Link LED Bulb](https://support.smartthings.com/hc/en-us/articles/204833550-GE-Link-LED-Bulb)
+
+If the GE Link LED Bulb was not discovered, you may need to reset the device before it can successfully connect with the SmartThings Hub. To do this:
+
+# Turn OFF the light for 3 seconds
+# Turn ON the light for 3 seconds
+# Repeat this process 5 times (OFF for 3 seconds + ON for 3 seconds = 1 time)
+# The bulb will then flash once if successfully reset
+# After the bulb is reset, follow the first set of instructions above to connect the GE Link LED Bulb (starting with the light switched OFF)
+
+```
+bellows -d /dev/ttyUSB1 form -D ~/zigbee.db
+bellows -d /dev/ttyUSB1 permit -D ~/zigbee.db
+# GE Link LED Bulb should blink to indicate that it has joined the Zigbee network formed and then permitted.
+bellows -d /dev/ttyUSB1 devices -D ~/zigbee.db
+Device:
+  NWK: 0x8e63
+  IEEE: <MAC ADDRESS/"NODE">
+  Endpoints:
+    1: profile=0x104, device_type=DeviceType.DIMMABLE_LIGHT
+      Input Clusters:
+        Basic (0)
+        Identify (3)
+        Groups (4)
+        Scenes (5)
+        On/Off (6)
+        Level control (8)
+        LightLink (4096)
+      Output Clusters:
+        Ota (25)
+bellows -d /dev/ttyUSB1 zcl -D ~/zigbee.db "MAC ADDRESS/NODE" 1 6 commands
+bellows -d /dev/ttyUSB1 zcl -D ~/zigbee.db "MAC ADDRESS/NODE" 1 6 command on/off
+```
