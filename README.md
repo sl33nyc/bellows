@@ -62,11 +62,11 @@ $ bellows zcl 00:0d:6f:00:05:7d:2d:34 1 1026 read_attribute 0
 
 If the GE Link LED Bulb was not discovered, you may need to reset the device before it can successfully connect with the SmartThings Hub. To do this:
 
-# Turn OFF the light for 3 seconds
-# Turn ON the light for 3 seconds
-# Repeat this process 5 times (OFF for 3 seconds + ON for 3 seconds = 1 time)
-# The bulb will then flash once if successfully reset
-# After the bulb is reset, follow the first set of instructions above to connect the GE Link LED Bulb (starting with the light switched OFF)
+1. Turn OFF the light for 3 seconds
+2. Turn ON the light for 3 seconds
+3. Repeat this process 5 times (OFF for 3 seconds + ON for 3 seconds = 1 time)
+4. The bulb will then flash once if successfully reset
+5. After the bulb is reset, follow the first set of instructions above to connect the GE Link LED Bulb (starting with the light switched OFF)
 
 ```
 bellows -d /dev/ttyUSB1 form -D ~/zigbee.db
